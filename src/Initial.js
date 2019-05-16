@@ -8,16 +8,19 @@ export default class Initial extends Component<Props> {
     super();
   }
 
-  goTo = (screen, screenTitle) => {
+  goTo = (loginType) => {
     Navigation.push(this.props.componentId, {
       component: {
-        name: screen,
+        name: 'Login',
         options: {
           topBar: {
             title: {
-              text: screenTitle
+              text: loginType
             }
           }
+        },
+        passProps: {
+          loginType: loginType
         }
       }
     });
@@ -26,12 +29,12 @@ export default class Initial extends Component<Props> {
   render() {
     return (
       <View style={styles.container}>
-        <TouchableOpacity style={styles.button} onPress={() => this.goTo('SignIn', 'Sign In')}>
+        <TouchableOpacity style={styles.button} onPress={() => this.goTo('Sign In')}>
           <Text>
             Sign In
           </Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPress={() => this.goTo('SignUp', 'Sign Up')}>
+        <TouchableOpacity style={styles.button} onPress={() => this.goTo('Sign Up')}>
           <Text>
             Sign Up
           </Text>
@@ -45,13 +48,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    alignItems: 'stretch',
   },
   button: {
     backgroundColor: '#DDDDDD',
     alignItems: 'center',
     margin: 30,
-    padding: 10
+    padding: 15,
+	borderRadius: 10
   }
 });
