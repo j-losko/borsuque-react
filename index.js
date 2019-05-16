@@ -1,13 +1,27 @@
 import { Navigation } from "react-native-navigation";
-import App from "./App";
+import {registerScreens} from './src/screens';
 
-Navigation.registerComponent(`App`, () => App);
+registerScreens();
 
 Navigation.events().registerAppLaunchedListener(() => {
   Navigation.setRoot({
     root: {
-      component: {
-        name: "App"
+      stack: {
+        id: 'App',
+          children: [
+          {
+            component: {
+              name: 'Initial',
+              options: {
+                topBar: {
+                  title: {
+                    text: 'React Native Borsuque Squad App'
+                  },
+                }
+              },
+            }
+          }
+        ],
       }
     }
   });
