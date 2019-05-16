@@ -19,14 +19,14 @@ export default class Login extends Component<Props> {
     Navigation.setRoot({
       root: {
         component: {
-          name: "Index"
+          name: 'Index'
         }
       }
     });
   }
   
   login = async () => {
-    if(this.state.login === '' || this.state.password == '') {
+    if(this.state.login === '' || this.state.password === '') {
       this.setState({
         incorrect: true,
         errorMessage: 'Both login and password need to be filled.'
@@ -35,7 +35,7 @@ export default class Login extends Component<Props> {
     }
 
     try {
-      if(this.props.loginType == 'Sign Up') {
+      if(this.props.loginType === 'Sign Up') {
         await firebase.auth().createUserWithEmailAndPassword(this.state.login, this.state.password);
       } else {
         await firebase.auth().signInWithEmailAndPassword(this.state.login, this.state.password);
@@ -56,20 +56,20 @@ export default class Login extends Component<Props> {
           style={styles.textInput}
           onChangeText={(login) => this.setState({login})}
           value={this.state.login}
-          placeholder="Login:"
+          placeholder='Login:'
         />
         <TextInput
           style={styles.textInput}
           onChangeText={(password) => this.setState({password})}
           value={this.state.password}
-          placeholder="Password:"
+          placeholder='Password:'
           secureTextEntry={true}
         />
         
         {this.state.incorrect && <Text style={styles.errorText}>{this.state.errorMessage}</Text>}
         
         <TouchableOpacity style={styles.button} onPress={() => this.login()}>
-          <Text>
+          <Text style={{color: 'white', fontSize: 17}}>
             {this.props.loginType}
           </Text>
         </TouchableOpacity>
@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
     marginTop: 30
   },
   button: {
-    backgroundColor: '#DDDDDD',
+    backgroundColor: '#30a3f1',
     alignItems: 'center',
     margin: 15,
     padding: 15,

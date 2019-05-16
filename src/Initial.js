@@ -30,12 +30,12 @@ export default class Initial extends Component<Props> {
     return (
       <View style={styles.container}>
         <TouchableOpacity style={styles.button} onPress={() => this.goTo('Sign In')}>
-          <Text>
+          <Text style={styles.buttonText}>
             Sign In
           </Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.button} onPress={() => this.goTo('Sign Up')}>
-          <Text>
+          <Text style={styles.buttonText}>
             Sign Up
           </Text>
         </TouchableOpacity>
@@ -51,10 +51,14 @@ const styles = StyleSheet.create({
     alignItems: 'stretch',
   },
   button: {
-    backgroundColor: '#DDDDDD',
+    backgroundColor: '#30a3f1',
     alignItems: 'center',
     margin: 30,
     padding: 15,
     borderRadius: 10
+  },
+  buttonText: {
+    color: 'white',
+    fontSize: 17
   }
 });
