@@ -10,22 +10,28 @@ export default class Index extends Component<Props> {
       isLoading: true,
       data: []
     };
+    this._isMounted = false;
   }
   
   componentWillMount = async() => {
+    this._isMounted = true;
     try {
       let url = 'https://swapi.co/api/people/?format=json&page=1';
       do {
         let response = await fetch(url);
         let json = await response.json();
-        this.setState({data: [...this.state.data, ...json.results]});
+        this._isMounted && this.setState({data: [...this.state.data, ...json.results]});
         url = json.next;
       } while(url);
-      this.setState({isLoading: false});
+      this._isMounted && this.setState({isLoading: false});
     }
     catch(error) {
       alert(error.message);
     }
+  }
+  
+  componentWillUnmount = () => {
+    this._isMounted = false;
   }
 
   goToDetails = (item) => {
