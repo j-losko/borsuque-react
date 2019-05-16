@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {ActivityIndicator, FlatList, Platform, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {ActivityIndicator, FlatList, Platform, StyleSheet, Text, TextInput, TouchableOpacity, View} from 'react-native';
 import {Navigation} from 'react-native-navigation';
 
 type Props = {};
@@ -8,21 +8,27 @@ export default class Index extends Component<Props> {
     super();
     this.state = {
       isLoading: true,
-      data: []
+      data: [],
+      searchValue: ''
     };
     this._isMounted = false;
+    this.arrayholder = [];
   }
   
   componentWillMount = async() => {
     this._isMounted = true;
+
     try {
       let url = 'https://swapi.co/api/people/?format=json&page=1';
+
       do {
         let response = await fetch(url);
         let json = await response.json();
-        this._isMounted && this.setState({data: [...this.state.data, ...json.results]});
+        this.arrayholder = [...this.arrayholder, ...json.results];
+        this._isMounted && this.searchFilterFunction();
         url = json.next;
       } while(url);
+
       this._isMounted && this.setState({isLoading: false});
     }
     catch(error) {
@@ -56,6 +62,31 @@ export default class Index extends Component<Props> {
     });
   }
 
+  searchFilterFunction = () => {
+    const newData = this.arrayholder.filter(item => {
+      const itemData = `${item.name.toUpperCase()}`;
+      const textData = this.state.searchValue.toUpperCase();
+      return itemData.indexOf(textData) > -1;
+    });
+
+    this.setState({ data: newData });
+  };
+
+  renderHeader = () => {
+    return (
+      <TextInput
+        style={styles.search}
+        placeholder='Search...'
+        onChangeText={(text) => {
+          this.setState({searchValue: text});
+          this.searchFilterFunction();
+        }}
+        value={this.state.searchValue}
+        autoCorrect={false}
+      />
+    );
+  };
+
   render() {
     return (
       <View style={styles.container}>
@@ -69,6 +100,7 @@ export default class Index extends Component<Props> {
               <Text>{item.name}</Text>
             </TouchableOpacity>
           }
+          ListHeaderComponent={this.renderHeader}
         />
       </View>
     );
@@ -87,6 +119,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     margin: 7,
     padding: 12,
+    borderRadius: 10
+  },
+  search: {
+    backgroundColor: '#848484',
+    color: '#FFFFFF',
     borderRadius: 10
   }
 });
