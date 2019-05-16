@@ -49,12 +49,12 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'stretch',
-    backgroundColor: '#F5FCFF',
   },
   button: {
     backgroundColor: '#DDDDDD',
     alignItems: 'center',
     margin: 30,
-    padding: 15
+    padding: 15,
+	borderRadius: 10
   }
 });

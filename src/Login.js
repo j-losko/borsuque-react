@@ -29,7 +29,7 @@ export default class Login extends Component<Props> {
     if(this.state.login === '' || this.state.password == '') {
       this.setState({
         incorrect: true,
-        errorMessage: 'Both username and password need to be filled.'
+        errorMessage: 'Both login and password need to be filled.'
       });
       return;
     }
@@ -53,13 +53,13 @@ export default class Login extends Component<Props> {
     return (
       <View style={styles.container}>
         <TextInput
-          style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+          style={styles.textInput}
           onChangeText={(login) => this.setState({login})}
           value={this.state.login}
           placeholder="Login:"
         />
         <TextInput
-          style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+          style={styles.textInput}
           onChangeText={(password) => this.setState({password})}
           value={this.state.password}
           placeholder="Password:"
@@ -81,19 +81,30 @@ export default class Login extends Component<Props> {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     alignItems: 'stretch',
-    backgroundColor: '#F5FCFF',
-    padding: 10
+    padding: 10,
+	marginTop: 30
   },
   button: {
     backgroundColor: '#DDDDDD',
     alignItems: 'center',
-    margin: 30,
-    padding: 15
+    margin: 15,
+    padding: 15,
+	borderRadius: 10
   },
   errorText: {
-    backgroundColor: 'red',
-    color: 'white'
+    backgroundColor: '#f2dede',
+    color: '#a94442',
+    textAlign: 'center',
+    margin: 15,
+	padding: 7,
+	borderRadius: 10
+  },
+  textInput: {
+    height: 40,
+    borderColor: 'gray',
+    borderWidth: 1,
+    margin: 15
   }
 });
