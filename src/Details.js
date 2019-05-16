@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
-import {Navigation} from 'react-native-navigation';
 
 type Props = {};
 export default class Details extends Component<Props> {
@@ -11,7 +10,14 @@ export default class Details extends Component<Props> {
   render() {
     return (
       <View style={styles.container}>
-        <Text>Details.js</Text>
+        <Text>Name: {this.props.data.name}</Text>
+		<Text>Height: {this.props.data.height}</Text>
+		<Text>Mass: {this.props.data.mass}</Text>
+		<Text>Hair color: {this.props.data.hair_color}</Text>
+		<Text>Skin color: {this.props.data.skin_color}</Text>
+		<Text>Eye color: {this.props.data.eye_color}</Text>
+		<Text>Birth year: {this.props.data.birth_year}</Text>
+		<Text>Gender: {this.props.data.gender}</Text>
       </View>
     );
   }
