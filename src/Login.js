@@ -84,22 +84,22 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'stretch',
     padding: 10,
-	marginTop: 30
+    marginTop: 30
   },
   button: {
     backgroundColor: '#DDDDDD',
     alignItems: 'center',
     margin: 15,
     padding: 15,
-	borderRadius: 10
+    borderRadius: 10
   },
   errorText: {
     backgroundColor: '#f2dede',
     color: '#a94442',
     textAlign: 'center',
     margin: 15,
-	padding: 7,
-	borderRadius: 10
+    padding: 7,
+    borderRadius: 10
   },
   textInput: {
     height: 40,
