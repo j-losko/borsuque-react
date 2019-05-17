@@ -9,9 +9,9 @@ export default class Index extends Component<Props> {
     this.state = {
       isLoading: true,
       data: [],
-      searchValue: ''
     };
     this._isMounted = false;
+    this.searchValue = '';
     this.arrayholder = [];
   }
   
@@ -65,7 +65,7 @@ export default class Index extends Component<Props> {
   searchFilterFunction = () => {
     const newData = this.arrayholder.filter(item => {
       const itemData = `${item.name.toUpperCase()}`;
-      const textData = this.state.searchValue.toUpperCase();
+      const textData = this.searchValue.toUpperCase();
       return itemData.indexOf(textData) > -1;
     });
 
@@ -78,10 +78,9 @@ export default class Index extends Component<Props> {
         style={styles.search}
         placeholder='Search...'
         onChangeText={(text) => {
-          this.setState({searchValue: text});
+          this.searchValue = text;
           this.searchFilterFunction();
         }}
-        value={this.state.searchValue}
         autoCorrect={false}
       />
     );
